@@ -1,6 +1,4 @@
-from typing import Any
-
-from Classes.entity import Entity
+from Entities.entity import Entity
 
 # ---------------------------- Player Class ----------------------------
 
@@ -8,60 +6,60 @@ class Player(Entity):
 
     # ---------------------------- Attributes ----------------------------
 
-    _level: int
     _exp: int
 
     # ---------------------------- Constructor ----------------------------
 
-    def __init__(self):
+    def __init__(self) -> None:
 
         super().__init__()
 
-        self.set_max_health(100)
-        self.set_current_health(100)
+        self._type = "Player"
 
-        self.set_strength(10)
+        self._max_health = 100
+        self._current_health = 100
 
-        self._level = 1
+        self._strength = 10
+
+        self._moves = ["Basic Attack"]
+
         self._exp = 0
 
     # ---------------------------- Set Methods ----------------------------
-
-    def set_level(self, new_level: str):
-
-        self._level = new_level
     
-    def set_exp(self, new_exp: str):
+    def set_exp(self, new_exp: int) -> None:
 
         self._exp = new_exp
 
     # ---------------------------- Get Methods ----------------------------
-
-    def get_level(self):
-
-        return self._level
     
-    def get_exp(self):
+    def get_exp(self) -> int:
 
         return self._exp
 
-    # ---------------------------- Class Methods ----------------------------
+    # ---------------------------- Instance Methods ----------------------------
 
-    def __str__(self):
+    def __str__(self) -> str:
 
         return f"""
+                [====================================]
 
-                Name: {self._name}\n
-                Level: {str(self._level)}\n
-                Experience Points: {str(self._exp)}\n
-                Max Health: {str(self._max_health)}\n
-                Current Health: {str(self._current_health)}\n
-                Strength: {str(self._strength)}\n
-                Defeated: {str(self._defeated)}\n\n
+                    Name: {self._name}
 
+                    Level: {str(self._level)}
+
+                    Experience Points: {str(self._exp)}
+
+                    Max Health: {str(self._max_health)}
+
+                    Current Health: {str(self._current_health)}
+
+                    Strength: {str(self._strength)}
+
+                [====================================]\n\n
                 """
     
-    def add_exp(self, exp_amount: int):
+    def add_exp(self, exp_amount: int) -> None:
 
         self.set_exp(self._exp + exp_amount)
 
@@ -73,7 +71,7 @@ class Player(Entity):
 
             self.level_up(levels)
 
-    def level_up(self, levels: int):
+    def level_up(self, levels: int) -> None:
 
         self.set_level(self._level + levels)
 
