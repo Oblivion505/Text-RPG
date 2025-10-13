@@ -1,5 +1,7 @@
 from Entities.entity import Entity
 
+import Utilities.formulas as Formulas
+
 # ---------------------------- Player Class ----------------------------
 
 class Player(Entity):
@@ -58,7 +60,7 @@ class Player(Entity):
 
                 [====================================]\n\n
                 """
-    
+
     def add_exp(self, exp_amount: int) -> None:
 
         self.set_exp(self._exp + exp_amount)
@@ -70,17 +72,29 @@ class Player(Entity):
             self.set_exp(self._exp - (100 * levels))
 
             self.level_up(levels)
+    
+    def exp_from_monster(self, monster: Entity) -> None:
+
+        exp_gained: int = 0
+
+        if monster.get_level() >= self._level:
+
+            exp_gained = monster.get_exp_value()
+        
+        else:
+
+            exp_gained = int(monster.get_exp_value() / 2)
+        
+        self.add_exp(exp_gained)
 
     def level_up(self, levels: int) -> None:
 
         self.set_level(self._level + levels)
 
-        health_increase: int = 10 * levels
+        new_health: int = Formulas.health_increase(self._max_health, levels)
 
-        self.set_max_health(self._max_health + health_increase)
-        self.set_current_health(self._current_health + health_increase)
+        self.set_max_health(new_health)
 
-        strength_increase: int = 5 * levels
+        new_strength: int = Formulas.strength_increase(self._strength, levels)
 
-        self.set_strength(self._strength + strength_increase)
-
+        self.set_strength(new_strength)
