@@ -6,6 +6,10 @@ from Menus.encounter import Encounter
 from Entities.entity import Entity
 from Entities.player import Player
 
+import Gameplay.generate_monster as Generate_Monster
+
+import GameData.monster_data as Monster_Data
+
 # ---------------------------- Adventure Menu Class ----------------------------
 
 class Adventure(Menu):
@@ -34,13 +38,9 @@ class Adventure(Menu):
 
                 case "1":
 
-                    new_enemy = Entity()
-                    new_enemy.set_name("Skeleton")
-                    new_enemy.set_max_health(50)
-                    new_enemy.set_current_health(50)
-                    new_enemy.set_strength(20)
-                    new_enemy.set_moves(["Basic Attack"])
-                    new_enemy.set_exp_value(10)
+                    monster_data: dict = Monster_Data.get_data("Skeleton")
+
+                    new_enemy = Generate_Monster.adventure(self._player)
 
                     new_encounter = Encounter(self._player, new_enemy)
                     new_encounter.activate()
