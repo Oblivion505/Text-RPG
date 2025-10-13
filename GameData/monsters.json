@@ -1,0 +1,83 @@
+{
+
+    "Skeleton" : {
+
+            "name" : "Skeleton",
+
+            "min_level": 0,
+
+            "max_level" : 10,
+
+            "base_health" : 50,
+
+            "base_strength" : 20,
+
+            "exp_drop" : 10,
+
+            "moves" : ["Basic Attack"],
+
+            "death_dialogue" : "(crumbles to dust)"
+
+        },
+    
+    "Goblin" : {
+
+            "name" : "Goblin",
+
+            "min_level": 0,
+
+            "max_level" : 10,
+
+            "base_health" : 35,
+
+            "base_strength" : 15,
+
+            "exp_drop" : 10,
+
+            "moves" : ["Basic Attack", "Steal"],
+
+            "death_dialogue" : "'hzaa!'"
+
+        },
+    
+    "Gold Skeleton" : {
+
+            "name" : "Gold Skeleton",
+
+            "min_level": 5,
+
+            "max_level" : 50,
+
+            "base_health" : 100,
+
+            "base_strength" : 30,
+
+            "exp_drop" : 100,
+
+            "moves" : ["Basic Attack", "Golden Shine"],
+
+            "death_dialogue" : "*clink clank*"
+
+        },
+    
+    "Dragon" : {
+
+            "name" : "Dragon",
+
+            "min_level": 30,
+
+            "max_level" : 50,
+
+            "base_health" : 600,
+            
+            "base_strength" : 250,
+
+            "exp_drop" : 200,
+
+            "moves" : ["Claw Strike", "Fire Breath", "Devour"],
+
+            "death_dialogue" : "'ROOOOOARRRRRR!!!'"
+            
+        }
+
+}
