@@ -174,6 +174,18 @@ class Entity():
 
             self._cooldown -= 1
 
+    def random_move(self) -> str:
+
+        move_choice: str = ""
+
+        if len(self._moves) > 0:
+
+            move_index = random.randint(0, len(self._moves) - 1)
+
+            move_choice = self._moves[move_index]
+
+        return move_choice
+
     def take_turn(self, opponent: 'Entity', move_name: str) -> Any:
 
         move: FunctionType = Moves.get_move(move_name)
