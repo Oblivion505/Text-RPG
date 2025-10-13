@@ -1,5 +1,3 @@
-import time
-
 from Menus.menu import Menu
 
 from Entities.player import Player
@@ -55,7 +53,8 @@ class Encounter(Menu):
 
     def activate(self) -> None:
 
-        print(f'\nYou have encountered {self._opponent.get_name()}.\n\n')
+        print(f'\n <========|- You have encountered {self._opponent.get_name()}. -|========>\n\n')
+        Text.halt()
 
         self.set_active(True)
 
@@ -77,7 +76,7 @@ class Encounter(Menu):
 
                 case "1":
 
-                    print("You choose to fight.\n")
+                    print("\nYou choose to fight.\n")
 
                     damage_dealt: int = player.take_turn(opponent, player.get_moves()[0])
 
@@ -88,13 +87,13 @@ class Encounter(Menu):
                         print(f'\nYou have defeated {opponent.get_name()}.')
                         print(f'\nTotal Turns: {self.get_round()}\n\n')
 
-                        player.add_exp(opponent.get_exp_value())
+                        player.exp_from_monster(opponent)
 
                         self.set_active(False)
                     
                     else:
 
-                        damage_taken: int = opponent.take_turn(player, opponent.get_moves()[0])
+                        damage_taken: int = opponent.take_turn(player, opponent.random_move())
 
                         print(f'You received {damage_taken} damage.\n\n')
 
@@ -120,4 +119,4 @@ class Encounter(Menu):
                     print("\nSuccessfully Ran Away.\n")
                     self.set_active(False)
 
-            time.sleep(0.5)
+            Text.halt()
