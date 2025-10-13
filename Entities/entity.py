@@ -30,7 +30,7 @@ class Entity():
 
         self._name = "entity"
 
-        self._level = 1
+        self._level = 0
 
         self._max_health = 1
         self._current_health = 1
