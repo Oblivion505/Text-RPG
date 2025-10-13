@@ -2,6 +2,8 @@ import random
 
 import GameData.monster_data as Monster_Data
 
+import Utilities.formulas as Formulas
+
 from Entities.entity import Entity
 from Entities.player import Player
 
@@ -15,18 +17,24 @@ def initialise_monster(new_entity: Entity, monster_name: str, average_level: int
 
     monster_level: int = monster_data["min_level"]
 
-    if average_level > monster_data["min_level"]:
+    if average_level >= monster_data["min_level"]:
 
-        monster_level += random.randint(0, 5)
+        monster_level = average_level + random.randint(0, 3)
     
     if monster_level > monster_data["max_level"]:
 
         monster_level = monster_data["max_level"]
 
     new_entity.set_level(monster_level)
-    new_entity.set_max_health(monster_data["base_health"] + 10 * monster_level)
-    new_entity.set_current_health(new_entity.get_max_health())
-    new_entity.set_strength(monster_data["base_strength"] + 5 * monster_level)
+
+    monster_health: int = Formulas.health_increase(monster_data["base_health"], monster_level)
+
+    new_entity.set_max_health(monster_health)
+    new_entity.set_current_health(monster_health)
+
+    monster_strength: int = Formulas.strength_increase(monster_data["base_strength"], monster_level)
+
+    new_entity.set_strength(monster_strength)
 
 def adventure(player: Player) -> Entity:
 
