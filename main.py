@@ -1,6 +1,5 @@
-import Utilities.format as Text
-
 import GameData.monster_data as Monster_Data
+
 from Menus.start import Start
 
 print(r"""  
@@ -22,6 +21,8 @@ print(r"""
 /\__________/\__________/\__________/\__________/\__________/\__________/\__________/\__________/\
 \/          \/          \/          \/          \/          \/          \/          \/          \/   
     """)
+
+Monster_Data.load_file()
 
 start_menu: Start = Start()
 start_menu.activate()
