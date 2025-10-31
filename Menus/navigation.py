@@ -1,3 +1,5 @@
+import GameData.player_data as Player_Data
+
 import Utilities.format as Text
 
 from Menus.menu import Menu
@@ -25,7 +27,7 @@ class Navigation(Menu):
          
         while self._active:
 
-            Text.options_list("Main Menu", ["View Your Character", "Go On An Adventure", "Go Back To Start Menu"])
+            Text.options_list("Main Menu", ["View Your Character", "Go On An Adventure", "Save Progress", "Go Back To Start Menu"])
             
             option: str = Text.get_input()
 
@@ -47,5 +49,11 @@ class Navigation(Menu):
                     adventure_menu.activate()
                 
                 case "3":
+
+                    Player_Data.save_data(self._player)
+
+                    print("\nProgress successfully saved!\n")
+                
+                case "4":
 
                     self.set_active(False)
